@@ -47,3 +47,5 @@ Each DNS lookup process starts when a certain resource on the Internet is reques
     \label{dnsresolution}
 \end{figure}
 \end{itemize}
+
+### &#8592; [1. Introduction](Introduction.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Main Menu](README.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [2. Domain Name System](DNS.md) &#8594;
