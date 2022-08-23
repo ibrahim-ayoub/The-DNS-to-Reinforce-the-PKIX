@@ -1,4 +1,4 @@
-# Introduction
+# 1. Introduction
 Internet of Things (IoT) is becoming one of the most important market segments and the target of all ICT key players. IoT security mechanisms are still in their infancy and have failed to keep up with the technology’s rapid growth. The increasing role of IoT devices in security breaches raises the issue of enforcing proper security on IoT devices. High-profile attacks such as the one by the Mirai botnet that exploited the vulnerabilities of IoT devices illustrate the importance of having security solutions.
 
 Similar to the Internet, security mechanisms in the IoT should ensure confidentiality, integrity, privacy and availability of the services offered. The IoT landscape has different networking topologies : the prominent ones being mesh, point-to-point and star topology. In this article, we will focus on the security issues in the star topology where all IoT devices are connected to a central gateway. Communication between the IoT devices and the Cloud servers in the Internet is made through this central gateway.
@@ -11,4 +11,4 @@ Current security mechanisms in IoT are based on proprietary closed solutions, wh
 
 The traditional use of PKI does not fit constrained IoT devices: since it required sufficient computing power, storage for the chain of trust and sufficient bandwidth for sending and receiving certificates, encrypted data using large block ciphers and signatures, as well as obtaining revocation lists, are technically and economically infeasible for this class of devices. This article explains the concept of replacing the trust and security schemes based on the traditional PKI with a novel approach that relies on the DNS (Domain Naming Service) \cite{rfc1034} \cite{rfc1035} infrastructure and builds all the required functionalities upon DNS. DNS brings the advantage of a single trust anchor with lightweight authentication schemes suitable for constrained IoT devices and easily automated for large-scale IoT deployments.
 
-### &#8592; [Introduction](Introduction.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Main Menu](README.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [DNS](DNS.md) &#8594;
+### &#8592; [1. Introduction](Introduction.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Main Menu](README.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [2. DNS](DNS.md) &#8594;
