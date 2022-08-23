@@ -1,3 +1,3 @@
 # The-DNS-to-Reinforce-the-PKIX
-### [Introduction](Introduction.md)
-### [DNS](DNS.md)
+1. ### [Introduction](Introduction.md)
+2. ### [DNS](DNS.md)
