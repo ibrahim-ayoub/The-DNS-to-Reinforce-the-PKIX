@@ -48,4 +48,4 @@ Each DNS lookup process starts when a certain resource on the Internet is reques
 \end{figure}
 \end{itemize}
 
-### &#8592; [1. Introduction](Introduction.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Main Menu](README.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [2. Domain Name System](DNS.md) &#8594;
+### &#8592; [1. Introduction](Introduction.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Main Menu](README.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [3. DNSSEC](DNSSEC.md) &#8594;
