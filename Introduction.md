@@ -11,5 +11,5 @@ Current security mechanisms in IoT are based on proprietary closed solutions, wh
 
 The traditional use of PKI does not fit constrained IoT devices: since it required sufficient computing power, storage for the chain of trust and sufficient bandwidth for sending and receiving certificates, encrypted data using large block ciphers and signatures, as well as obtaining revocation lists, are technically and economically infeasible for this class of devices. This article explains the concept of replacing the trust and security schemes based on the traditional PKI with a novel approach that relies on the DNS (Domain Naming Service) \cite{rfc1034} \cite{rfc1035} infrastructure and builds all the required functionalities upon DNS. DNS brings the advantage of a single trust anchor with lightweight authentication schemes suitable for constrained IoT devices and easily automated for large-scale IoT deployments.
 
-## [Main Menu](README.md)
-## Next Section: [DNS](DNS.md)
+### [Main Menu](README.md)
+### Next Section: [DNS](DNS.md)
