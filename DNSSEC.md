@@ -39,15 +39,15 @@ Figure 3 - DNSSEC Basic Operation
     
 5. The fr server sends back: 
     - a non secure referral to the authoritative name server requested (example if asking for example.com)
-    - an RRset of DNSKey records for the net zone (the net zone's **PubZSK** and **PubKSK**)
-    - An RRSig of the above record set (signed with the net zone's **PvtKSK**)
+    - an RRset of DNSKey records for the fr zone (the fr zone's **PubZSK** and **PubKSK**)
+    - An RRSig of the above record set (signed with the fr zone's **PvtKSK**)
     - DS record for the example zone (the hash of the example zone **PubKSK**)
-    - RRSig of the above DS record (signed using the net zone's **PvtZSK**)
+    - RRSig of the above DS record (signed using the fr zone's **PvtZSK**)
 
 6. The recursive DNS resolver:
-    - verifies the net zone's DNSKey RRset by successfully decrypting the RRset's RRSig using the net zone's **PubKSK**
-    - verifies the net zone's DS record for the example zone by successfully decrypting the record's RRSig using the net zone's **PubZSK** 
-    - Verifies the net zone by comparing the hash of the net zone's **PubKSK** for the net zone with the previously obtained DS record from the root zone for the net zone  
+    - verifies the fr zone's DNSKey RRset by successfully decrypting the RRset's RRSig using the fr zone's **PubKSK**
+    - verifies the fr zone's DS record for the example zone by successfully decrypting the record's RRSig using the fr zone's **PubZSK** 
+    - Verifies the fr zone by comparing the hash of the fr zone's **PubKSK** for the fr zone with the previously obtained DS record from the root zone for the fr zone  
     
 7. The recursive resolver sends a query to the example authoritative name server
     
@@ -60,9 +60,9 @@ Figure 3 - DNSSEC Basic Operation
 9. The recursive resolver: 
     - Verify the example zone DNSKey RRSet by successfully decrypting the RRSet's RRSig using the example **PubKSK**. 
     - The example zone A records by successfully decrypting the RRSet's RRSig using the example zone's **PubZSK**
-    - Verify the zone by comparing the hash values of example zone's **PubKSK** from the example zone with the previously obtained DS record for the example zone from the net zone
+    - Verify the zone by comparing the hash values of example zone's **PubKSK** from the example zone with the previously obtained DS record for the example zone from the fr zone
 
-10. The recursive resolver responds to the original client with the IP address of example.net
+10. The recursive resolver responds to the original client with the IP address of example.fr
 
 DNSSEC Signed ROOT by July 1, 2010 making DNSSEC usable 
 
