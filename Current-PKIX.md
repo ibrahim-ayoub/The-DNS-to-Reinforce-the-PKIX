@@ -6,9 +6,9 @@ The Transport Layer Security (TLS) protocol is one of the main elements of secur
 <p align = "center">
 Figure 4 - TLS Handshake
 </p>
+
 A client that wants to connect to a web server obtains the server's IP address via a DNS resolution as explained in [[RFC4033]](https://datatracker.ietf.org/doc/rfc4033/) and \textbf{\textit{secondly}} it connects to the domain’s web server using the IP address via Hyper Text Transfer Protocol (HTTP) connection.A TLS client connecting to a TLS server will receive that server's X.509 certificate. The elements of the certificate include information about the certificate issuer, information about the recipient of the certificate and the certificate's digital signature. The client ensures that the server is whom it claims to be by verifying that the certificate the server sent is legitimate. 
 
-<!--- ---------------------------------------------------------------------------------------------------------------- -->
 
 <p align="center">
   <img src="/images/tls-session-setup.jpg" />
@@ -16,7 +16,6 @@ A client that wants to connect to a web server obtains the server's IP address v
 <p align = "center">
 Figure 5 - TLS Session Setup
 </p>
-<!--- ---------------------------------------------------------------------------------------------------------------- -->
 
 A chain of trust exists to help TLS clients verify the authenticity of certificates. This chain of trust starts at the top with root CAs. Root CAs are trusted by default and have self-signed certificates that allow them to issue other certificates creating intermediary CAs. Intermediary CAs, which the root CAs trust, can issue certificates for servers and websites. An X.509 certificate contains several fields describing the issuing CA and its owner. The issuing CA signs the certificate by encrypting the hash (digest) of the certificate fields with its private key.  
 The problem with the current model is that certificates are not required to be verified by the CA that issued them. Moreover, a CA that wants its certificates to be trusted must be added to the root store containing the list of trusted root CA certificates. Different vendors and browsers have different root stores. Moreover, the root and intermediary CAs are not immune to security breaches \cite{enisa, billcorbitt}, and could, in theory, issue certificates for any domain like the root authority Diginotar did when it issued a fraudulent Google certificate in 2011 \cite{diginotargoogle}. 
