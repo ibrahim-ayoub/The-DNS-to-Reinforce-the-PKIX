@@ -39,12 +39,13 @@ Each DNS lookup process starts when a certain resource on the Internet is reques
 - **QCLASS:** QCLASS specifies the class of the query. For example, QCLASS IN is for the Internet. 
  
 DNS Queries are in general handled recursively. Queries are sent by the DNS client's stub resolver, which is usually a part of the browser or Operating System (OS), to the recursive resolver. After receiving the query, the recursive resolver will send the query to the root server which will give its referral to one of the TLDs. The resolver then sends the query to the TLD name server referred to it by the root server. The process repeats as the TLD refers to an authoritative server below it. This process goes on until an authoritative name server of the QNAME contained in the query is reached after which this authoritative server returns a definitive answer, which is usually an address, to the recursive resolver. Finally, the recursive resolver delivers the answer to the DNS client. The process described assumes a cold cache in the resolver. This could be the case if the server's cache has been cleared or the server has just been started. In almost all other cases, and to expedite the resolving process and reduce DNS traffic on the network, the resolvers, and depending on the Time-To-Live (TTL) field of every RR, temporarily cache the queries they resolve and answer related queries without consulting any authoritative servers.
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.7]{dns-resolution.pdf}
-    \caption{DNS Lookup Process}
-    \label{dnsresolution}
-\end{figure}
-\end{itemize}
+<!--- ---------------------------------------------------------------------------------------------------------------- -->
+<p align="center">
+  <img src="/images/dns-resolution.jpg" />
+</p>
+<p align = "center">
+Figure2 - DNS Resolution
+</p>
+<!--- ---------------------------------------------------------------------------------------------------------------- -->
 
 ### &#8592; [1. Introduction](Introduction.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Main Menu](README.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [3. DNSSEC](DNSSEC.md) &#8594;
