@@ -1,14 +1,15 @@
 # 4. The Current Public Key Infrastructure with X.509 Digital Certificates
-The Transport Layer Security (TLS) protocol is one of the main elements of security in today's Internet that relies on the Public Key Infrastructure (PKI). For the most part, secure communications over the Internet start with a TLS handshake, as depicted in *Figure 4*. [[RFC4033]](https://datatracker.ietf.org/doc/rfc4033/)
+
+A client that wants to connect to a web server obtains the server's IP address via a DNS resolution as explained in [Section 2](DNS.md) and establishes a Hyper Text Transfer Protocol (HTTP) session with the server. The integrity of the DNS resolution is guaratneed by using [DNSSEC](DNSSEC.md) which allows the client to be sure that the DNS responses come from the legitimate name server, and that they have not been tampered with along the way. A TLS client connecting to a TLS server will receive that server's X.509 certificate. The elements of the certificate include information about the certificate issuer, information about the recipient of the certificate and the certificate's digital signature. The client ensures that the server is whom it claims to be by verifying that the certificate the server sent is legitimate. 
+
+The Transport Layer Security (TLS) protocol is used to secure the session between the client and the server. TLS allows the client and the server to authenticate each other and negotiate an encryption algorithm and cryptographic keys before the data is exchanged. TLS ensures that data cannot be tampered with during transit since the data is encrypted. The TLS protocol is one of the main elements of security in today's Internet that relies on the Public Key Infrastructure (PKI). For the most part, secure communications over the Internet start with a TLS handshake. See *Figures 4* and *5.*
+
 <p align="center">
   <img src="/images/tls13-handshake.jpg" />
 </p>
 <p align = "center">
 Figure 4 - TLS Handshake
 </p>
-
-A client that wants to connect to a web server obtains the server's IP address via a DNS resolution as explained in [Section 2](DNS.md) and \textbf{\textit{secondly}} establishes a Hyper Text Transfer Protocol (HTTP) session with the server. A TLS client connecting to a TLS server will receive that server's X.509 certificate. The elements of the certificate include information about the certificate issuer, information about the recipient of the certificate and the certificate's digital signature. The client ensures that the server is whom it claims to be by verifying that the certificate the server sent is legitimate. 
-
 
 <p align="center">
   <img src="/images/tls-session-setup.jpg" />
@@ -17,20 +18,16 @@ A client that wants to connect to a web server obtains the server's IP address v
 Figure 5 - TLS Session Setup
 </p>
 
-A chain of trust exists to help TLS clients verify the authenticity of certificates. This chain of trust starts at the top with root CAs. Root CAs are trusted by default and have self-signed certificates that allow them to issue other certificates creating intermediary CAs. Intermediary CAs, which the root CAs trust, can issue certificates for servers and websites. An X.509 certificate contains several fields describing the issuing CA and its owner. The issuing CA signs the certificate by encrypting the hash (digest) of the certificate fields with its private key.  
-The problem with the current model is that certificates are not required to be verified by the CA that issued them. Moreover, a CA that wants its certificates to be trusted must be added to the root store containing the list of trusted root CA certificates. Different vendors and browsers have different root stores. Moreover, the root and intermediary CAs are not immune to security breaches \cite{enisa, billcorbitt}, and could, in theory, issue certificates for any domain like the root authority Diginotar did when it issued a fraudulent Google certificate in 2011 \cite{diginotargoogle}. 
+During the TLS handshake, data is exchanged securely between the client and server using asymmetric cryptography. Asymmetric cryptography is based on using a pair of public/private keys. Data encrypted using a public key can only be decrypted using the public key's corresponding private key. A mathematical relation between the public and private keys ensures that the private key can not be inferred from the public key. A website (e.g., that of a bank) publishes its public key for anyone to download. An account holder in the bank, Alice, encrypts a message using the public key and sends it to the bank. Only the bank can decrypt the message using its private key. Thus, Alice is sure that her message is accessed only by the bank and not by anyone else. 
+
+However, simply using a public key whose owner claims to be the bank is hazardous. With the current model that only relies on public/private key pairs, the risk is high that an impersonator publishes their public key posing as Alice's bank. Alice, trusting that she is contacting her bank, will encrypt the message using the public key and send it to the impersonator. The impersonator will be able to decrypt the messages sent by Alice, and will therefore have access to Alice's banking details and any other information she shares. It is clear that simply relying on public/private key pairs is not sufficient as anyone can generate such key pairs and can impersonate other entities. 
+
+A chain of trust exists to help TLS clients verify the authenticity of certificates. This chain of trust starts at the top with root CAs. Root CAs are trusted by default and have self-signed certificates that allow them to issue other certificates creating intermediary CAs. Intermediary CAs, which the root CAs trust, can issue certificates for servers and websites. An X.509 certificate contains several fields describing the issuing CA and its owner. The issuing CA signs the certificate by encrypting the hash (digest) of the certificate fields with its private key. The problem with the current model is that certificates are not required to be verified by the CA that issued them. Moreover, a CA that wants its certificates to be trusted must be added to the root store containing the list of trusted root CA certificates. Different vendors and browsers have different root stores. Moreover, the root and intermediary CAs are not immune to [security breaches](https://www.enisa.europa.eu/media/news-items/operation-black-tulip/), and could, in theory, issue certificates for any domain like the root authority Diginotar did when it issued a [fraudulent Google certificate](https://security.googleblog.com/2011/08/update-on-attempted-man-in-middle.htm) in 2011. 
 
 
- 
-. For the second operation, the Transport Layer Security (TLS) protocol comes to the rescue, allowing the client and the server to authenticate each other and negotiate an encryption algorithm and cryptographic keys before the data is exchanged. TLS ensures that data cannot be tampered with during transit since the data is encrypted. Details of the second operation is explained in subsection \ref{Public-Key Infrastructure X.509} 
 
-\subsection{Public-Key Infrastructure X.509 (PKIX)}
-\label{Public-Key Infrastructure X.509}
-Encrypting and decrypting the data in the TLS protocol is done by a matching pair of cryptographic keys: \textbf{\textit{public}} and \textbf{\textit{private key}}. The Data encrypted by a public key can be decrypted only by the corresponding private key and vice versa, enabling secure communication with unknown users. 
 
-A website (e.g., a bank) publishes its public key for anyone to download. An account holder in the bank, Alice, encrypts a message using the public key and sends it to the bank. Only the bank can decrypt the message using its private key. Thus, Alice is sure that her message is accessed only by the bank and not by anyone else. 
 
-On the other hand, there is a possibility that an impersonator publishes their public key posing as Alice's bank. Alice will encrypt the message using the public key and send it to the impersonator, thinking she is communicating with her bank. The impersonator could do a man in the middle and copy the message. As the impersonator is the owner of the public and the private key, it will enable them to decrypt and read the message sent by Alice. Thus, there arises a possibility that anyone can create a public key for accessing any domain name. 
 
 Hence, binding between the identity (e.g., the domain name) and the public key is necessary. The X.509 standard \cite{x.509-ITU} proposed by the ITU and ISO provides a mechanism to bind a particular public key to a specific identity. The domain holder can do this binding, and in that case, it is called a self-signed certificate. If the self-signed certificate is obtained from a trusted source by the application using the certificate for authentication, then it is accepted. Otherwise there is no guarantee of the certificate's authenticity.
 
