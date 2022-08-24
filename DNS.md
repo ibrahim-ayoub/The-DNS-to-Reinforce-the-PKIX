@@ -8,15 +8,17 @@ The DNS was presented in RFC 1034 [[RFC1034]](https://datatracker.ietf.org/doc/r
 The main components of the DNS are:
 1. The Domain Name Space:
     The domain name space is structured as an inverted tree and it evolves from the root at the top from which the resolving begins. Just below the root are the top-level domains (TLD). The Internet Assigned Numbers Authority (IANA) specifies four types of TLDS. TLDs could be generic TLDs (gTLD) e.g., .com, .net, country-code TLDs (ccTLD) e.g., .uk, .fr, sponsored TLDs (sTLD) e.g., .edu, .gov, and the infrastructre TLD (iTLD) .arpa. below top-level domains come the DNS domains. A visualization of a subset of the DNS domain name space is depicted in *Figure 1*.
-
+<!--- ---------------------------------------------------------------------------------------------------------------- -->
 <p align="center">
-  <img src="your_relative_path_here" width="350" title="hover text">
-  <img src="your_relative_path_here_number_2_large_name" width="350" alt="accessibility text">
+  <img src="/images/DNS-tree.jpg" />
 </p>
- 
+<p align = "center">
+Figure1 - DNS Domain Name Space
+</p>
+<!--- ---------------------------------------------------------------------------------------------------------------- -->
 
 2. Name server:
-    Name servers are programs that have the structure of a subset of the domain name. Name servers are said to be authoritative over a domain if they can give an answer about that domain. For example, the name server example is authoritative over the domain name example.com and could return a definitive answer for it. Name servers which are authoritative over a certain domain could have subdomains over which they are authoritative. In the figure, subdomain.example.com is a subdomain of example.com and the example name server is authoritative over it. Moreover, a name server could delegate authority to lower name servers. In the figure, example.com delegates authority to delegate.example.com which means that the example name server does not answer for domains ending in delegate.example.com. Name servers have text files called $Master Files$ that hold information about the zone or domain over which each name server is authoritative.
+    Name servers are programs that have the structure of a subset of the domain name. Name servers are said to be authoritative over a domain if they can give an answer about that domain. For example, the name server *example* is authoritative over the domain name *example.fr* and could return a definitive answer for it. Name servers which are authoritative over a certain domain could have subdomains over which they are authoritative. In the figure, subdomain.example.com is a subdomain of example.com and the example name server is authoritative over it. Moreover, a name server could delegate authority to lower name servers. In the figure, example.com delegates authority to delegate.example.com which means that the example name server does not answer for domains ending in delegate.example.com. Name servers have text files called $Master Files$ that hold information about the zone or domain over which each name server is authoritative.
     
 3. Resource Records:
     A unit of information in a DNS *Master File* is called a *Resource Record* (RR). Each RR is a piece of information about a certain domain (or node in the domain name space tree) which a DNS client may ask for. Each RR has 6 fields as specified in RFC 1035 \cite{rfc1035}:
