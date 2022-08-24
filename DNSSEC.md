@@ -10,28 +10,25 @@ We define the following terms:
 6. **RRSig - Resource Record Signature:** a record containing an RRSet's digital signature 
 7. **DS Record - Delegation of Signing:** a record containing the hash of a child domain's/zone's PubKSK (the fingerprint of a child's PubKSK)
 
-The resolver already has a copy of the root public KSK.
+The resolver already has a copy of the root public KSK. The basic DNSSEC operation is depicted in *Figure 3*. 
 
 <!--- ---------------------------------------------------------------------------------------------------------------- -->
 <p align="center">
   <img src="/images/dnssec-symbols.jpg" />
 </p>
 <p align = "center">
-Figure3 - DNSSEC Basic Operation
+Figure 3 - DNSSEC Basic Operation
 </p>
 <!--- ---------------------------------------------------------------------------------------------------------------- -->
 
-\begin{itemize}
+1. The client sends a recursive query to the resolver to obtain the address of *example.fr*. Following the regular DNS query process, the resolver sends a query to the root server. 
 
-    \item The client sends a recursive query to the resolver (example.net)
-    \item The resolver sends a query to the root server 
-
-    \item The root server answers with (5 things):
-    1. a non secure referral to the authoritative server of the (net zone)
-    2. an RRSet DNS Key Records for the root zone (the root zone's pubZSK and PubKSK)
-    3. An RRSig of the DNS RRset (the above set .2) signed with the root zone's PvtKSK
-    4. DS Records of the net zone (hash/digest of the netzone's PubKSK) 
-    5. RRSig of the above DS record (signed using the root zone's PvtZSK)
+2. The root server sends back:
+    - a non secure referral to the authoritative server of the (net zone)
+    - an RRSet DNS Key Records for the root zone (the root zone's pubZSK and PubKSK)
+    - An RRSig of the DNS RRset (the above set .2) signed with the root zone's PvtKSK
+    - DS Records of the net zone (hash/digest of the netzone's PubKSK) 
+    - RRSig of the above DS record (signed using the root zone's PvtZSK)
 
     \item The recursive server does (3 things):
     1. Verifies the root zone's DNSKey RRset by successfully decrypting the RRset's RRsig using the rootzone's PubKSK
