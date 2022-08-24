@@ -8,7 +8,7 @@ The Transport Layer Security (TLS) protocol is one of the main elements of secur
 Figure 4 - TLS Handshake
 </p>
 <!--- ---------------------------------------------------------------------------------------------------------------- -->
-A client that wants to connect to a web server obtains the server's IP address via a DNS resolution as explained in [2. Domain Name System](DNS.md) and \textbf{\textit{secondly}} it connects to the domain’s web server using the IP address via Hyper Text Transfer Protocol (HTTP) connection.A TLS client connecting to a TLS server will receive that server's X.509 certificate. The elements of the certificate include information about the certificate issuer, information about the recipient of the certificate and the certificate's digital signature. The client ensures that the server is whom it claims to be by verifying that the certificate the server sent is legitimate. 
+A client that wants to connect to a web server obtains the server's IP address via a DNS resolution as explained in [2](DNS.md) and \textbf{\textit{secondly}} it connects to the domain’s web server using the IP address via Hyper Text Transfer Protocol (HTTP) connection.A TLS client connecting to a TLS server will receive that server's X.509 certificate. The elements of the certificate include information about the certificate issuer, information about the recipient of the certificate and the certificate's digital signature. The client ensures that the server is whom it claims to be by verifying that the certificate the server sent is legitimate. 
 
 <!--- ---------------------------------------------------------------------------------------------------------------- -->
 
