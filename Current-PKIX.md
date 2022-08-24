@@ -1,6 +1,5 @@
 # 4. The Current Public Key Infrastructure with X.509 Digital Certificates
 The Transport Layer Security (TLS) protocol is one of the main elements of security in today's Internet that relies on the Public Key Infrastructure (PKI). For the most part, secure communications over the Internet start with a TLS handshake, as depicted in *Figure 4*. [[RFC4033]](https://datatracker.ietf.org/doc/rfc4033/)
-<!--- ---------------------------------------------------------------------------------------------------------------- -->
 <p align="center">
   <img src="/images/tls13-handshake.jpg" />
 </p>
