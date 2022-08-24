@@ -64,4 +64,4 @@ Figure 3 - DNSSEC Basic Operation
 
 10. The recursive resolver responds to the original client with the IP address of example.fr
 
-### &#8592; [2. Domain Name System](DNS.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Main Menu](README.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [4. DANE](DANE.md) &#8594;
+### &#8592; [2. Domain Name System](DNS.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Main Menu](README.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [4. Current-PKIX](Current-PKIX.md) &#8594;
