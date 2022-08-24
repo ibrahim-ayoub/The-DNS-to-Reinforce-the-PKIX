@@ -1,16 +1,16 @@
 # 3. DNSSEC
-DNSSEC is used to insure integrity but not privacy. Its main trust anchor is the root name server. It is defined in [[RFC4033]](https://datatracker.ietf.org/doc/rfc4033/), [[RFC4034]](https://datatracker.ietf.org/doc/rfc4034/), and [[RFC4035]](https://datatracker.ietf.org/doc/rfc4035/).
+DNSSEC is used to insure integrity but not privacy. Its main trust anchor is the root name server. It is defined in [[RFC4033]](https://datatracker.ietf.org/doc/rfc4033/), [[RFC4034]](https://datatracker.ietf.org/doc/rfc4034/), and [[RFC4035]](https://datatracker.ietf.org/doc/rfc4035/). Below is a demonstration of how DNSSEC works. 
 
-We define the following terms:
+We first define the following terms:
 1. **Digital signature:** Digital signatures are done when, for example, a document is hashed and then encrypted with one's private key before being sent along side the original document. The receiver hashes the documents and decrypts the digital signature using the sender's public key. If they match, the receiver can be sure that the document was sent by the authentic sender and that it has not been tampered with on the way.
-2. **Fingerprint** hash of a public key
-3. **KSK - Key Signing Key:** used to sign or verify a zone's keys
+2. **Fingerprint:** hash of a public key
+3. **KSK - Key Signing Key:** used to sign or verify a zone's key records
 4. **ZSK - Zone Signing Key:** used to sign or verify a zone's non-key records 
-5. **RRSet - Resource Record Set:** a set of records with same type and same domain/zone
+5. **RRSet - Resource Record Set:** a set of records with same type and same zone
 6. **RRSig - Resource Record Signature:** a record containing an RRSet's digital signature 
 7. **DS Record - Delegation of Signing:** a record containing the hash of a child zone's PubKSK (the fingerprint of a child's PubKSK)
 
-The resolver already has a copy of the root public KSK and each name server has its own public/private KSKs and public/private ZSKs. The basic DNSSEC operation is depicted in *Figure 3*. 
+In addition to providing data integrity and data origin authentication, DNSSEC can explicitly answer in case of record non-existence. In each DNSSEC-enabled zone, there should be two pairs of keys: a private/public Key Signing Key (KSK) pair and a private/public Zone Signing Key (ZSK) pair. KSKs are used to sign keys, while ZSKs are used to sign non-key data. The anchor of trust that DNSSEC depends on is the root zone's public KSK. This key should be known to all resolvers using the DNSSEC chain of trust. he basic DNSSEC operation is depicted in *Figure 3*. 
 
 <!--- ---------------------------------------------------------------------------------------------------------------- -->
 <p align="center">
@@ -38,7 +38,7 @@ Figure 3 - DNSSEC Basic Operation
 4. The recursive DNS resolver sends a query to the .fr zone. 
     
 5. The fr server sends back: 
-    - a non secure referral to the authoritative name server requested (example if asking for example.com)
+    - a non secure referral to the authoritative name server requested 
     - an RRset of DNSKey records for the fr zone (the fr zone's **PubZSK** and **PubKSK**)
     - An RRSig of the above record set (signed with the fr zone's **PvtKSK**)
     - DS record for the example zone (the hash of the example zone **PubKSK**)
@@ -58,12 +58,10 @@ Figure 3 - DNSSEC Basic Operation
     - RRSig of above record set (signed with example zone **PvtZSK**)
     
 9. The recursive resolver: 
-    - Verify the example zone DNSKey RRSet by successfully decrypting the RRSet's RRSig using the example **PubKSK**. 
+    - Verifies the example zone DNSKey RRSet by successfully decrypting the RRSet's RRSig using the example **PubKSK**. 
     - The example zone A records by successfully decrypting the RRSet's RRSig using the example zone's **PubZSK**
-    - Verify the zone by comparing the hash values of example zone's **PubKSK** from the example zone with the previously obtained DS record for the example zone from the fr zone
+    - Verifies the zone by comparing the hash values of example zone's **PubKSK** from the example zone with the previously obtained DS record for the example zone from the fr zone
 
 10. The recursive resolver responds to the original client with the IP address of example.fr
-
-DNSSEC Signed ROOT by July 1, 2010 making DNSSEC usable 
 
 ### &#8592; [2. Domain Name System](DNS.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Main Menu](README.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [4. DANE](DANE.md) &#8594;
