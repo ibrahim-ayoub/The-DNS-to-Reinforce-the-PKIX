@@ -7,7 +7,7 @@ The Transport Layer Security (TLS) protocol is one of the main elements of secur
 Figure 4 - TLS Handshake
 </p>
 
-A client that wants to connect to a web server obtains the server's IP address via a DNS resolution as explained in [[RFC4033]](https://datatracker.ietf.org/doc/rfc4033/) and \textbf{\textit{secondly}} it connects to the domain’s web server using the IP address via Hyper Text Transfer Protocol (HTTP) connection.A TLS client connecting to a TLS server will receive that server's X.509 certificate. The elements of the certificate include information about the certificate issuer, information about the recipient of the certificate and the certificate's digital signature. The client ensures that the server is whom it claims to be by verifying that the certificate the server sent is legitimate. 
+A client that wants to connect to a web server obtains the server's IP address via a DNS resolution as explained in [Section 2](DNS.md) and \textbf{\textit{secondly}} establishes a Hyper Text Transfer Protocol (HTTP) session with the server. A TLS client connecting to a TLS server will receive that server's X.509 certificate. The elements of the certificate include information about the certificate issuer, information about the recipient of the certificate and the certificate's digital signature. The client ensures that the server is whom it claims to be by verifying that the certificate the server sent is legitimate. 
 
 
 <p align="center">
@@ -22,8 +22,7 @@ The problem with the current model is that certificates are not required to be v
 
 
  
-
-For the first operation, securing the communication during DNS resolution could be provided by DNS Security (DNSSEC) \cite{rfc4398} described in subsection \ref{Using DNS infrastructure and its security extensions as PKI}. For the second operation, the Transport Layer Security (TLS) protocol comes to the rescue, allowing the client and the server to authenticate each other and negotiate an encryption algorithm and cryptographic keys before the data is exchanged. TLS ensures that data cannot be tampered with during transit since the data is encrypted. Details of the second operation is explained in subsection \ref{Public-Key Infrastructure X.509} 
+. For the second operation, the Transport Layer Security (TLS) protocol comes to the rescue, allowing the client and the server to authenticate each other and negotiate an encryption algorithm and cryptographic keys before the data is exchanged. TLS ensures that data cannot be tampered with during transit since the data is encrypted. Details of the second operation is explained in subsection \ref{Public-Key Infrastructure X.509} 
 
 \subsection{Public-Key Infrastructure X.509 (PKIX)}
 \label{Public-Key Infrastructure X.509}
