@@ -95,7 +95,7 @@ The draft [TLS Client Authentication via DANE TLSA records](https://www.ietf.org
         f4dcd8c4ae6162121ea9166984831b57
         b408534451fd1b9702f8de0532ecd03c )   
 ```
-During the TLS handshake, the server requests a client certificate (via the *Client Certificate Request* message). The server then extracts the DANE client identity, constructs the DNS query name for the corresponding TLSA record and authenticates the client's certificate or public key. During mutual authentication, both the client and the server could be authenticated as shown in the Fig.\ref{Mutual authentication facilitated by DANE} 
+During the TLS handshake, the server requests a client certificate (via the *Client Certificate Request* message). The server then extracts the DANE client identity, constructs the DNS query name for the corresponding TLSA record and authenticates the client's certificate or public key. During mutual authentication, both the client and the server could be authenticated as shown in *Figure 11*.
 
 DANE-based mutual authentication enables using a self-signed certificate with different Root CA's. Thus, each institution can choose its Root CA to sign the certificates and validate dynamically based on DANE client identity.   
 
