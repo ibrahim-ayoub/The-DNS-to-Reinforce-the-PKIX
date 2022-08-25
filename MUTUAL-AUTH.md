@@ -105,3 +105,6 @@ DANE-based mutual authentication enables using a self-signed certificate with di
 <p align = "center">
 Figure 11 - Mutual Authentication Facilitated by DANE
 </p>
+
+
+### &#8592; [5. DNS-Based Authentication of Named Entities (DANE)](DANE.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Main Menu](README.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
